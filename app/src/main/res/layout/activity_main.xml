@@ -33,4 +33,12 @@
         app:navGraph="@navigation/mobile_navigation"
     />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="konndokoso"
+        tools:layout_editor_absoluteX="169dp"
+        tools:layout_editor_absoluteY="278dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
