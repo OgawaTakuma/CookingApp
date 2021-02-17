@@ -21,7 +21,7 @@
         app:menu="@menu/bottom_nav_menu"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewD"
         android:layout_width="101dp"
         android:layout_height="7dp"
         android:text="ogawadesudesu"
