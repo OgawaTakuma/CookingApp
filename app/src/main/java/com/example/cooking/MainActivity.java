@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -12,9 +15,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.View;
 import static android.view.View.*;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,13 +38,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
+
         // ボタンの取得
         Button button1 = findViewById(R.id.button);
 
         // リスナーの登録
         button1.setOnClickListener(onClick_button);
-
-
     }
 
     private View.OnClickListener onClick_button = new View.OnClickListener() {
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
             // ボタン1が押された場合
             if (v.getId() == R.id.button) {
                 textView = findViewById(R.id.editText1);
+              　RecipeCreate recipeCreate = new RecipeCreate();
+                recipeCreate.execute();
                 //Toast.makeText(this, "ボタン1が押されました！", Toast.LENGTH_LONG).show();
 
                 // インテントへのインスタンス生成
