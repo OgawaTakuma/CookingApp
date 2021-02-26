@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Recipe {
     private String recipeName;
     private String zairyo;
-//    private double suuryou;
     private String recipeUrl;
     private String imageUrl;
+    private String suuryou;
 
     public String getRecipeName(){
         return recipeName;
@@ -23,13 +23,6 @@ public class Recipe {
         this.zairyo = zairyo;
     }
 
-//    public double getSuuryou(){
-//        return suuryou;
-//    }
-//    public void setSuuryou(double suuryou){
-//        this.suuryou = suuryou;
-//    }
-
     public String getRecipeUrl(){
         return recipeUrl;
     }
@@ -43,5 +36,8 @@ public class Recipe {
     public void setImageUrl(String imageUrl){
         this.imageUrl = imageUrl;
     }
+
+    public String getSuuryou() { return suuryou; }
+    public void setSuuryou(String suuryou){ this.suuryou = suuryou; }
 
 }

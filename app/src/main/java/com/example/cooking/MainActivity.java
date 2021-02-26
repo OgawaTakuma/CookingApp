@@ -1,6 +1,8 @@
 package com.example.cooking;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +20,23 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.View;
+import android.widget.Toast;
+
 import static android.view.View.*;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
+    private TestOpenHelper helper;
+    private SQLiteDatabase db;
+    private CsvReader csvReader;
+
+    private String recipeNameText;
+    private String recipeUrlText;
+    private String imageUrlText;
+    private String zairyoText;
+    private String suuryouText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +57,26 @@ public class MainActivity extends AppCompatActivity {
 
         // リスナーの登録
         button1.setOnClickListener(onClick_button);
+
+        helper = new TestOpenHelper(getApplicationContext());
+        db =helper.getReadableDatabase();
+        csvReader = new CsvReader();
+        csvReader.reader(getApplicationContext());
+        //recipeCreate.csvtotext(csvReader.objects);
+        for(int i=0;i<csvReader.objects.size();i++) {
+            //objectの中身をテキストに格納
+            recipeNameText = csvReader.objects.get(i).getRecipeName();
+            recipeUrlText = csvReader.objects.get(i).getRecipeUrl();
+            imageUrlText = csvReader.objects.get(i).getImageUrl();
+            zairyoText = csvReader.objects.get(i).getZairyo();
+            suuryouText = csvReader.objects.get(i).getSuuryou();
+            //DBに追加
+            helper.saveData(db, recipeNameText, recipeUrlText, imageUrlText, zairyoText, suuryouText);
+
+
+        }
+        //DB読み込んで表示させたい
+
     }
 
     private View.OnClickListener onClick_button = new View.OnClickListener() {
@@ -52,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             // ボタン1が押された場合
             if (v.getId() == R.id.button) {
                 textView = findViewById(R.id.editText1);
-              　RecipeCreate recipeCreate = new RecipeCreate();
+                RecipeCreate recipeCreate = new RecipeCreate();
                 recipeCreate.execute();
                 //Toast.makeText(this, "ボタン1が押されました！", Toast.LENGTH_LONG).show();
 
@@ -62,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 //intent.putExtra("DATA",textView.getText().toString());
                 // サブ画面の呼び出し
                 //startActivity(intent);
+
+
+
             }
         }
     };
