@@ -1,6 +1,7 @@
 package com.example.cooking;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import static android.view.View.*;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     private TextView textView;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             // ボタン1が押された場合
             if (v.getId() == R.id.button) {
                 textView = findViewById(R.id.editText1);
-              　RecipeCreate recipeCreate = new RecipeCreate();
+                RecipeCreate recipeCreate = new RecipeCreate();
                 recipeCreate.execute();
                 //Toast.makeText(this, "ボタン1が押されました！", Toast.LENGTH_LONG).show();
 

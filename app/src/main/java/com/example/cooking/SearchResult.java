@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class SearchResult extends AppCompatActivity {
+    /*
     Recipe recipe;
     ConstraintLayout layout =findViewById(R.id.ConstraintLayout);
     TextView textView = findViewById(R.id.textViewD);
@@ -46,5 +47,5 @@ public class SearchResult extends AppCompatActivity {
 
     }
 
-
+*/
 }
