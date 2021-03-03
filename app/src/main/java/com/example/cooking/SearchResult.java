@@ -1,6 +1,7 @@
 package com.example.cooking;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -8,14 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class SearchResult extends AppCompatActivity {
+
     /*
     Recipe recipe;
     ConstraintLayout layout =findViewById(R.id.ConstraintLayout);
     TextView textView = findViewById(R.id.textViewD);
-
+*/
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchresult);
+
+
+        TextView text = (TextView)findViewById(R.id.textView4);
+        // インテントを取得
+        Intent intent = getIntent();
+        // インテントに保存されたデータを取得
+        String data = intent.getStringExtra("DATA");
+        text.setText(data);
+
+
+        /*
         //とりあえず。
         int id = 1;
 
@@ -42,10 +55,11 @@ public class SearchResult extends AppCompatActivity {
         //材料名
         TextView textZairyo1 = new TextView(this);
         textZairyo1.setText(recipe.getZairyo());
+         */
 
 
 
     }
 
-*/
+
 }

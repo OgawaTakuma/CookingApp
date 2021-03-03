@@ -1,6 +1,8 @@
 package com.example.cooking;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -25,7 +27,7 @@ import android.widget.Toast;
 import static android.view.View.*;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView textView;
     private TestOpenHelper helper;
@@ -51,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
-
+        //リスナーをボタンに登録
+        findViewById(R.id.button).setOnClickListener(this);
         // ボタンの取得
         Button button1 = findViewById(R.id.button);
 
         // リスナーの登録
-        button1.setOnClickListener(onClick_button);
+        //button1.setOnClickListener(onClick_button);
 
         helper = new TestOpenHelper(getApplicationContext());
         db =helper.getReadableDatabase();
@@ -79,26 +82,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private View.OnClickListener onClick_button = new View.OnClickListener() {
+    //private View.OnClickListener onClick_button = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             // ボタン1が押された場合
             if (v.getId() == R.id.button) {
                 textView = findViewById(R.id.editText1);
                 RecipeCreate recipeCreate = new RecipeCreate();
                 recipeCreate.execute();
-                //Toast.makeText(this, "ボタン1が押されました！", Toast.LENGTH_LONG).show();
+                Context context = getApplicationContext();
+                Toast.makeText(context, "ボタン1が押されました！", Toast.LENGTH_LONG).show();
 
                 // インテントへのインスタンス生成
-                //Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, SearchResult.class);
                 //　インテントに値をセット
-                //intent.putExtra("DATA",textView.getText().toString());
+                intent.putExtra("DATA",textView.getText().toString());
                 // サブ画面の呼び出し
-                //startActivity(intent);
+                startActivity(intent);
 
 
 
             }
         }
-    };
 }
